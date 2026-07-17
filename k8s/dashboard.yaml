@@ -1,0 +1,38 @@
+# grafana's sidecar picks up any configmap with this label automatically,
+# no manual dashboard import needed
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-service-dashboard
+  labels:
+    grafana_dashboard: "1"
+data:
+  test-service.json: |
+    {
+      "title": "test-service",
+      "uid": "test-service",
+      "tags": ["idp-service"],
+      "timezone": "browser",
+      "panels": [
+        {
+          "title": "Requests / s",
+          "type": "timeseries",
+          "gridPos": {"x": 0, "y": 0, "w": 12, "h": 8},
+          "targets": [{"expr": "rate(app_requests_total{job=\"test-service\"}[1m])"}]
+        },
+        {
+          "title": "Uptime (s)",
+          "type": "stat",
+          "gridPos": {"x": 12, "y": 0, "w": 6, "h": 8},
+          "targets": [{"expr": "app_uptime_seconds{job=\"test-service\"}"}]
+        },
+        {
+          "title": "Pod restarts",
+          "type": "stat",
+          "gridPos": {"x": 18, "y": 0, "w": 6, "h": 8},
+          "targets": [{"expr": "sum(kube_pod_container_status_restarts_total{namespace=\"default\", pod=~\"test-service.*\"})"}]
+        }
+      ],
+      "schemaVersion": 39,
+      "time": {"from": "now-30m", "to": "now"}
+    }
