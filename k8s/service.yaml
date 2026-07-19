@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-service
+  name: inventory-api
   labels:
-    app: test-service
+    app: inventory-api
 spec:
   selector:
-    app: test-service
+    app: inventory-api
   ports:
     - port: 80
       targetPort: http

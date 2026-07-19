@@ -23,7 +23,7 @@ const server = http.createServer((req, res) => {
     return res.end(metrics());
   }
   res.setHeader('content-type', 'application/json');
-  res.end(JSON.stringify({ service: 'test-service', message: 'Hello from the golden path' }));
+  res.end(JSON.stringify({ service: 'inventory-api', message: 'Hello from the golden path' }));
 });
 
 server.listen(8080, () => console.log('listening on :8080'));

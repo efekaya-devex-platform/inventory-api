@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-service
+  name: inventory-api
   labels:
-    app: test-service
+    app: inventory-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: test-service
+      app: inventory-api
   template:
     metadata:
       labels:
-        app: test-service
+        app: inventory-api
     spec:
       containers:
         - name: app
-          image: ghcr.io/efekaya-devex-platform/test-repo:latest
+          image: ghcr.io/efekaya-devex-platform/inventory-api:latest
           ports:
             - containerPort: 8080
               name: http

@@ -3,14 +3,14 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: test-service-dashboard
+  name: inventory-api-dashboard
   labels:
     grafana_dashboard: "1"
 data:
-  test-service.json: |
+  inventory-api.json: |
     {
-      "title": "test-service",
-      "uid": "test-service",
+      "title": "inventory-api",
+      "uid": "inventory-api",
       "tags": ["idp-service"],
       "timezone": "browser",
       "panels": [
@@ -18,19 +18,19 @@ data:
           "title": "Requests / s",
           "type": "timeseries",
           "gridPos": {"x": 0, "y": 0, "w": 12, "h": 8},
-          "targets": [{"expr": "rate(app_requests_total{job=\"test-service\"}[1m])"}]
+          "targets": [{"expr": "rate(app_requests_total{job=\"inventory-api\"}[1m])"}]
         },
         {
           "title": "Uptime (s)",
           "type": "stat",
           "gridPos": {"x": 12, "y": 0, "w": 6, "h": 8},
-          "targets": [{"expr": "app_uptime_seconds{job=\"test-service\"}"}]
+          "targets": [{"expr": "app_uptime_seconds{job=\"inventory-api\"}"}]
         },
         {
           "title": "Pod restarts",
           "type": "stat",
           "gridPos": {"x": 18, "y": 0, "w": 6, "h": 8},
-          "targets": [{"expr": "sum(kube_pod_container_status_restarts_total{namespace=\"default\", pod=~\"test-service.*\"})"}]
+          "targets": [{"expr": "sum(kube_pod_container_status_restarts_total{namespace=\"default\", pod=~\"inventory-api.*\"})"}]
         }
       ],
       "schemaVersion": 39,

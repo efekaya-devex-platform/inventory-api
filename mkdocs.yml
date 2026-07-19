@@ -1,4 +1,4 @@
-site_name: test-service
+site_name: inventory-api
 nav:
   - Home: index.md
 plugins:
